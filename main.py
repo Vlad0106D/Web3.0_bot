@@ -1,19 +1,22 @@
 import os
+import asyncio
 from telegram.ext import ApplicationBuilder
 from bot.handlers import setup_handlers
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
-# Создаём приложение
-application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+async def run_bot():
+    application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+    setup_handlers(application)
 
-# Регистрируем команды
-setup_handlers(application)
+    # Удаляем webhook перед стартом polling
+    await application.bot.delete_webhook(drop_pending_updates=True)
 
-# Запуск polling с удалением webhook
-async def on_startup(app):
-    await app.bot.delete_webhook(drop_pending_updates=True)
     print("✅ Бот запущен через polling...")
+    await application.initialize()
+    await application.start()
+    await application.updater.start_polling()
+    await application.updater.idle()
 
-# Запускаем приложение
-application.run_polling(on_startup=on_startup)
+if __name__ == "__main__":
+    asyncio.run(run_bot())
