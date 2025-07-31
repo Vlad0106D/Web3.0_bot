@@ -1,4 +1,9 @@
-TELEGRAM_BOT_TOKEN = "7753750626:AAECEmbPksDUXV1KXrAgwE6AO1wZxdCMxVo"
+# config.py
 
-# Добавим параметры для Bybit API
-BYBIT_REST_URL = "https://api.bybit.com"
+TELEGRAM_TOKEN = "7753750626:AAF17RQv-ySPqppsBMF_crvHw6p-ZNwMwtU"
+
+# список пар для анализа
+SYMBOLS = [
+    "BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "SUIUSDT",
+    "APTUSDT", "ARBUSDT", "OPUSDT", "STXUSDT", "TIAUSDT"
+]
