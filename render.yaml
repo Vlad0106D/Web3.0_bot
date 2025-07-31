@@ -1,8 +1,9 @@
-# render.yaml
-
 services:
   - type: worker
-    name: mr-trade-bot
+    name: telegram-bot
     runtime: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "bash run_worker.sh"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.8
