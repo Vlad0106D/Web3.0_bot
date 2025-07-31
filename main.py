@@ -12,19 +12,19 @@ app_web = Quart(__name__)
 async def index():
     return "Web3 Bot is running"
 
-# Создаём Telegram-бота один раз
+# Создание Telegram-приложения
 bot_app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 setup_handlers(bot_app)
 
 async def start_bot():
-    print("Запуск Telegram-бота...")
+    print("Запускаем Telegram-бота...")
     await bot_app.initialize()
     await bot_app.start()
     await bot_app.updater.start_polling()
     # Не вызываем run_polling() — он завершает event loop
 
 async def start_web():
-    print("Запуск веб-сервера...")
+    print("Запускаем веб-интерфейс...")
     await app_web.run_task(host="0.0.0.0", port=8080)
 
 async def main():
