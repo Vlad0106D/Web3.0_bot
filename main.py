@@ -5,7 +5,7 @@ from config import TELEGRAM_BOT_TOKEN
 
 async def main():
     application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
-    
+
     # Удаляем Webhook, если остался
     await application.bot.delete_webhook(drop_pending_updates=True)
 
@@ -13,12 +13,9 @@ async def main():
     setup_handlers(application)
 
     print("✅ Бот запущен через polling (без конфликтов)...")
-    
-    # Инициализация и запуск (без run_polling — чтобы избежать ошибки с event loop)
-    await application.initialize()
-    await application.start()
-    await application.updater.start_polling()  # безопасный polling
-    await application.updater.wait_until_closed()  # ждёт завершения
+
+    # Запускаем polling напрямую (без Updater, только Application)
+    await application.run_polling()
 
 if __name__ == "__main__":
     asyncio.run(main())
