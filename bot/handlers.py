@@ -1,12 +1,13 @@
-from telegram import Update
-from telegram.ext import CommandHandler, ContextTypes
+# bot/handlers.py
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("👋 Привет! Бот работает и готов к анализу!")
+from telegram.ext import CommandHandler, Application
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🛠 Доступные команды:\n/start — запуск\n/help — помощь")
+async def start(update, context):
+    await update.message.reply_text("👋 Бот работает. Используй /check для анализа рынка.")
 
-def setup_handlers(app):
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("help", help_command))
+async def help_command(update, context):
+    await update.message.reply_text("Доступные команды:\n/start — запуск\n/check — анализ")
+
+def setup_handlers(application: Application):
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("help", help_command))
