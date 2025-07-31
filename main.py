@@ -1,11 +1,11 @@
 # main.py
 
-from telegram.ext import ApplicationBuilder
-from bot.handlers import setup_handlers
+from telegram.ext import Application
 from config import TOKEN
+from bot.handlers import setup_handlers
 
 def main():
-    application = ApplicationBuilder().token(TOKEN).build()
+    application = Application.builder().token(TOKEN).build()
     setup_handlers(application)
     print("✅ Бот запущен через polling...")
     application.run_polling()
