@@ -6,6 +6,6 @@ services:
     startCommand: python main.py
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10
+        value: 3.10.8
       - key: TELEGRAM_BOT_TOKEN
         value: 7753750626:AAECEmbPksDUXV1KXrAgwE6AO1wZxdCMxVo
