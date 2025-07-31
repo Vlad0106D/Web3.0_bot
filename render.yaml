@@ -1,9 +1,8 @@
+# render.yaml
+
 services:
   - type: worker
-    name: web3-trade-bot
+    name: mr-trade-bot
     runtime: python
-    envVars:
-      - key: TELEGRAM_BOT_TOKEN
-        value: 7753750626:AAECEmbPksDUXV1KXrAgwE6AO1wZxdCMxVo
-    buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "bash run_worker.sh"
