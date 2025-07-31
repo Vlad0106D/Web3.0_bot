@@ -1,8 +1,3 @@
-# render.yaml
-
-services:
-  - type: worker
-    name: mr-trade-bot
-    runtime: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "bash run_worker.sh"
+#!/bin/bash
+echo "📦 Запуск бота..."
+python main.py
