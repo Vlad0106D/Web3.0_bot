@@ -1,14 +1,15 @@
 from telegram import Update
-from telegram.ext import CommandHandler, ContextTypes
-from bot.commands.check import check_command
+from telegram.ext import ContextTypes
+from advanced_strategy import analyze_market
 
-async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("👋 Привет! Я Web3 трейдинг-бот.")
+PAIRS = ["BTC/USDT", "ETH/USDT", "SOL/USDT", "XRP/USDT", "SUI/USDT", "APT/USDT", "ARB/USDT", "OP/USDT", "STX/USDT", "TIA/USDT"]
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🛠 Команды: /start, /check, /help")
-
-def setup_handlers(app):
-    app.add_handler(CommandHandler("start", start_command))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CommandHandler("check", check_command))
+async def check_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("🔍 Анализ рынка... Подождите 10–15 сек.")
+    results = analyze_market(PAIRS)
+    
+    for res in results:
+        text = f"🔹 *{res['symbol']}*\nСигнал: *{res['signal']}*"
+        if res['reasons']:
+            text += "\nПричины:\n" + "\n".join(f"- {r}" for r in res['reasons'])
+        await update.message.reply_text(text, parse_mode="Markdown")
