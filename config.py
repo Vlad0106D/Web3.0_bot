@@ -1,12 +1,8 @@
-import os
-from dotenv import load_dotenv
+TELEGRAM_BOT_TOKEN = "7753750626:AAECEmbPksDUXV1KXrAgwE6AO1wZxdCMxVo"
 
-# Загружаем переменные из .env
-load_dotenv()
+PAIRS = [
+    "bitcoin",
+    "ethereum"
+]
 
-# Получаем токен из переменной окружения
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-
-# Остальная конфигурация
-PAIRS = ["bitcoin", "ethereum"]
 VS_CURRENCY = "usd"
