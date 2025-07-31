@@ -7,12 +7,16 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 async def run_bot():
     application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+
+    # Подключаем команды
     setup_handlers(application)
 
-    # Удаляем webhook перед стартом polling
+    # Удаляем webhook
     await application.bot.delete_webhook(drop_pending_updates=True)
 
     print("✅ Бот запущен через polling...")
+
+    # Запускаем бота
     await application.initialize()
     await application.start()
     await application.updater.start_polling()
