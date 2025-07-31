@@ -1,5 +1,7 @@
 # config.py
 
-TELEGRAM_BOT_TOKEN = "7753750626:AAECEmbPksDUXV1KXrAgwE6AO1wZxdCMxVo"
+import os
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 PAIRS = ["bitcoin", "ethereum"]
 VS_CURRENCY = "usd"
