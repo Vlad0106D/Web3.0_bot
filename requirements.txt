@@ -1,3 +1,5 @@
-python-telegram-bot==20.6
-aiohttp
+python-telegram-bot==20.8
 pybit
+pandas
+numpy
+aiohttp
