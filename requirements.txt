@@ -1,4 +1,5 @@
-python-telegram-bot==20.7
-pybit==5.7.0
+python-telegram-bot==20.6
 pandas
 ta
+pybit
+pycryptodome
