@@ -1,6 +1,6 @@
 services:
-  - type: web
-    name: trading-bot
+  - type: worker  # 👈 это главное отличие!
+    name: trading-bot-worker
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
