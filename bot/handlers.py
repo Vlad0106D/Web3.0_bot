@@ -1,9 +1,14 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-from advanced_strategy import analyze_market
+from base_strategy import analyze_market  # ✅ правильный импорт
 
-PAIRS = ["BTC/USDT", "ETH/USDT", "SOL/USDT", "XRP/USDT", "SUI/USDT", "APT/USDT", "ARB/USDT", "OP/USDT", "STX/USDT", "TIA/USDT"]
+# Список 10 активных пар
+PAIRS = [
+    "BTC/USDT", "ETH/USDT", "SOL/USDT", "XRP/USDT", "SUI/USDT",
+    "APT/USDT", "ARB/USDT", "OP/USDT", "STX/USDT", "TIA/USDT"
+]
 
+# Команда /check
 async def check_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Анализ рынка... Подождите 10–15 сек.")
     results = analyze_market(PAIRS)
