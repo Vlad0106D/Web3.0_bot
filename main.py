@@ -1,20 +1,14 @@
-import asyncio
-from telegram.ext import ApplicationBuilder
-from config import TOKEN
-from bot.handlers import setup_handlers
+# main.py
 
-async def main():
+from telegram.ext import ApplicationBuilder
+from bot.handlers import setup_handlers
+from config import TOKEN
+
+def main():
     application = ApplicationBuilder().token(TOKEN).build()
     setup_handlers(application)
     print("✅ Бот запущен через polling...")
-    await application.initialize()
-    await application.start()
-    await application.updater.start_polling()
-    await application.updater.idle()
+    application.run_polling()
 
-if __name__ == '__main__':
-    try:
-        asyncio.run(main())
-    except RuntimeError as e:
-        if str(e) != 'Cannot close a running event loop':
-            raise
+if __name__ == "__main__":
+    main()
