@@ -1,21 +1,10 @@
-# strategy/base_strategy.py
-
 from services.coingecko import get_market_data
-from config import PAIRS, VS_CURRENCY
 
-async def analyze_pair():
-    signals = {}
-    for coin in PAIRS:
-        data = await get_market_data(coin)
-        if not data:
-            signals[coin] = "нет данных"
-            continue
+async def analyze_pair(symbol: str):
+    price = await get_market_data(symbol)
+    if price is None:
+        return f"{symbol.upper()}: нет данных"
 
-        change = data.get("price_change_percentage_24h", 0)
-        if change > 2:
-            signals[coin] = "🔼 LONG"
-        elif change < -2:
-            signals[coin] = "🔽 SHORT"
-        else:
-            signals[coin] = "⏸️ NONE"
-    return signals
+    # Здесь будет стратегия. Пока просто сигнал:
+    signal = "🔼 LONG" if price and price > 1000 else "🔽 SHORT"
+    return f"{symbol.upper()}: ${price} — {signal}"
