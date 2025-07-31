@@ -1,2 +1,3 @@
 #!/bin/bash
-python3 main.py 
+echo "📦 Запуск бота..."
+python main.py
