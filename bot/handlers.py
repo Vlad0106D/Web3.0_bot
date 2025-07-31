@@ -1,5 +1,3 @@
-# bot/handlers.py
-
 from telegram.ext import CommandHandler, Application
 
 async def start(update, context):
